@@ -1,0 +1,34 @@
+<idea-plugin version="2">
+  <id>org.idea.plugin.duplicatelines</id>
+  <name>Duplicate lines</name>
+  <version>1.0</version>
+  <vendor email="test@yourcompany.com">mobileDeveloper</vendor>
+
+  <description><![CDATA[
+      Plugin for intellij idea to allow copy lines<br>
+      and block of code like Eclipse IDE (Ctrl+Alt+Up and Ctrl+Alt+Down).
+      ]]></description>
+
+  <idea-version since-build="107.105"/>
+
+  <actions>
+
+<!--    <action id="CopyLineUpAction" class="CopyLineUpAction"-->
+<!--            text="Copy line(s) up."-->
+<!--            description="Copy line(s) up.">-->
+<!--      <add-to-group group-id="EditorActions" anchor="last"/>-->
+<!--      <keyboard-shortcut first-keystroke="control alt UP" keymap="$default"/>-->
+<!--    </action>-->
+
+    <group id="Sample_JBPopupActionGroup">
+    <action class="JBPopupFactoryAction"
+            id="Sample_JBPopupFactoryAction">
+      <keyboard-shortcut first-keystroke="control alt UP" keymap="$default"/>
+    </action>
+    </group>
+  </actions>
+
+
+  <extensions defaultExtensionNs="com.intellij">
+  </extensions>
+</idea-plugin>
