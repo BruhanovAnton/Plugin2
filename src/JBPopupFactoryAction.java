@@ -6,6 +6,7 @@ import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.openapi.ui.popup.ListPopup;
 import com.intellij.psi.*;
 
+import com.intellij.psi.impl.source.PsiJavaFileImpl;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.lang.UrlClassLoader;
 
@@ -52,32 +53,20 @@ public class JBPopupFactoryAction extends AnAction {
 //__________________________________________________________________________________
         int caret =  editor.getCaretModel().getOffset();
         PsiFile psiFile = PsiDocumentManager.getInstance(project).getPsiFile(document);
-        PsiMethod method = PsiTreeUtil.getParentOfType(psiFile.findElementAt(caret), PsiMethod.class);
+//        PsiMethod method = PsiTreeUtil.getParentOfType(psiFile.findElementAt(caret), PsiMethod.class);
 
+        PsiJavaFile psiJavaFile = (PsiJavaFile) PsiManager.getInstance(project).findFile(psiFile.getVirtualFile());
+        System.out.println("Check: "+ psiJavaFile.findReferenceAt(caret-2).getElement().getReference().resolve().getText());
+//        Получаем имя класса
+        psiJavaFile.findReferenceAt(caret-2).getElement().getReference().resolve().getParent().getContainingFile().getVirtualFile().getName();
+//        Название дирректории
+        psiJavaFile.findReferenceAt(caret-2).getElement().getReference().resolve().getParent().getContainingFile().getContainingDirectory().getName();
+//        Получаем имя класса без расширения
+        psiJavaFile.findReferenceAt(caret-2).getElement().getReference().resolve().getParent().getContainingFile().getVirtualFile().getNameWithoutExtension();
 
-        System.out.println(psiFile.findReferenceAt(caret-2).getElement());
-        System.out.println(psiFile.getContainingFile());
+        PsiFile psiFile1 = psiJavaFile.findReferenceAt(caret-2).getElement().getReference().resolve().getParent().getContainingFile();
+        ((PsiJavaFileImpl) psiFile1).getPackageName();
 
-
-
-        System.out.println("Check: "+psiFile.getVirtualFile().getPath());
-
-
-        System.out.println("Check2: "+psiFile.getVirtualFile().getUrl());
-
-
-//        psiFile.getReference().;
-
-        if (method != null) {
-          System.out.println(method.getName());
-//            System.out.println(method.findReferenceAt(caret).getElement().getText());
-
-        }
-        PsiClass containingClass = method.getContainingClass();
-
-
-//System.out.println(containingClass.getInnerClasses()[0].getReference());
-        System.out.println("works!!!");
 //__________________________________________________________________________________
 
 
