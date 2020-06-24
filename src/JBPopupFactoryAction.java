@@ -5,14 +5,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.openapi.ui.popup.ListPopup;
 import com.intellij.psi.*;
-
 import com.intellij.psi.impl.source.PsiJavaFileImpl;
-import com.intellij.psi.util.PsiTreeUtil;
-import com.intellij.util.lang.UrlClassLoader;
-
-
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
