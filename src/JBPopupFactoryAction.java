@@ -60,6 +60,13 @@ public class JBPopupFactoryAction extends AnAction {
         PsiFile psiFile1 = psiJavaFile.findReferenceAt(caret-2).getElement().getReference().resolve().getParent().getContainingFile();
         ((PsiJavaFileImpl) psiFile1).getPackageName();
 
+        //Получаем значание атрибута аннотации
+        PsiClass psiClass = ((PsiJavaFile) psiFile1).getClasses()[0];
+        psiClass.getAllFields()[0].getAnnotations()[0].getParameterList().getAttributes()[0].getValue().getText();
+        //олучаем название аннотации
+        psiClass.getAllFields()[0].getAnnotations()[0].getNameReferenceElement().getReferenceNameElement().getText();
+
+
 //__________________________________________________________________________________
 
 
@@ -77,8 +84,4 @@ public class JBPopupFactoryAction extends AnAction {
         // De-select the text range that was just replaced
         primaryCaret.removeSelection();
     }
-
-
-
-
 }
